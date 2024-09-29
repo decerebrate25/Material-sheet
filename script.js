@@ -88,6 +88,26 @@ recordMaterialsBtn.addEventListener('click', (event) => {
     displayRecordedMaterials();
   });
 
+function displayRecordedMaterials() {
+  fetch('https://raw.githubusercontent.com/decerebrate25/Mareial-sheet/master/data.json')
+    .then(response => response.json())
+    .then(data => {
+      const recordedItems = data.recordedItems;
+      const itemList = document.getElementById('item-list');
+      recordedItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+          <h2>${item.workOrderNumber}</h2>
+          <p>Item Number: ${item.itemNumber}</p>
+          <p>Quantity: ${item.quantity}</p>
+          <p>Description: ${item.description}</p>
+          <p>Date: ${item.date}</p>
+        `;
+        itemList.appendChild(itemElement);
+      });
+    });
+}
+
  // Add event listener to the main container
  mainContainer.addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-btn')) {
