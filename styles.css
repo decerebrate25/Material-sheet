@@ -1,0 +1,126 @@
+/* styles.css */
+
+body {
+    background-image: url(linemen.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #00698f;
+  }
+  
+  #material-form {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #material-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  #material-form input[type="text"], #material-form input[type="number"], #material-form select {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  #material-form button[type="button"], #material-form button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    background-color: #00698f;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  #material-form button[type="button"]:hover, #material-form button[type="submit"]:hover {
+    background-color: #0088cc;
+  }
+  
+  #item-checkout-section {
+    margin-top: 20px;
+  }
+  
+  #item-checkout-section p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  #item-list {
+    margin-top: 20px;
+  }
+  
+  #item-list div {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #item-list div:last-child {
+    border-bottom: none;
+  }
+  
+  #main-container {
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  #main-container h3 {
+    background-color: #00698f;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #main-container table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #main-container th, #main-container td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #main-container th {
+    background-color: #00698f;
+    color: #fff;
+  }
+  
+  #main-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #main-container tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .delete-btn {
+    background-color: #00698f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #0088cc;
+  }

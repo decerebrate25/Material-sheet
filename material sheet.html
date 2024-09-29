@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Material Recording Sheet</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Material Recording Sheet</h1>
+  <form id="material-form">
+   
+    <div id="wire-section" style="display:none;">
+      <label>Wire Quantity:</label>
+      <select id="wire-quantity-type">
+        <option value="ft">Feet</option>
+        <option value="lbs">Pounds</option>
+      </select>
+      <input type="number" id="wire-quantity" placeholder="Enter quantity">
+    </div>
+    <div id="item-section" style="display:none;">
+      <label>Item Quantity:</label>
+      <input type="number" id="item-quantity" placeholder="Enter quantity">
+    </div>
+    <div id="item-checkout-section">
+        <p>Please fill out all boxes in the add item section, with Item Number, Quantity, Item Description and Work Order Number.</p>
+      <button type="button" id="add-item-btn">Add Item</button>
+      <div id="item-list"></div>
+    </div>
+    <label>Work Order Number:</label>
+    <input type="text" id="work-order-number" placeholder="Enter work order number">
+    <button type="submit" id="record-materials-btn">Record Materials</button>
+  </form>
+  <div id="main-container">
+    <h2>Recorded Materials:</h2>
+    <div id="item-list"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
