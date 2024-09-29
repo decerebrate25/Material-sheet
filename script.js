@@ -51,7 +51,7 @@ recordMaterialsBtn.addEventListener('click', (event) => {
   const items = itemList.children;
 
   // Get the recorded materials from the data.json file
-  fetch('https://raw.githubusercontent.com/decerebrate25/Material-sheet/main/data.json)
+  fetch('https://raw.githubusercontent.com/decerebrate25/Material-sheet/main/data.json')
     .then(response => response.json())
     .then(data => {
       let recordedMaterials = data.recordedItems || [];
@@ -92,7 +92,7 @@ recordMaterialsBtn.addEventListener('click', (event) => {
       const issueLabels = ['recorded-materials'];
 
       // Use the GitHub API to create a new issue
-      fetch(`https://api.github.com/repos/decerebrate25/Material-sheet/issues`, {
+      fetch(`https://api.github.com/repos/decerebrate25/Material-sheet/data.json`, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer your-github-token',
