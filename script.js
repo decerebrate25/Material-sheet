@@ -51,7 +51,7 @@ recordMaterialsBtn.addEventListener('click', (event) => {
   const items = itemList.children;
 
   // Get the recorded materials from the data.json file
-  fetch('https://raw.githubusercontent.com/decerebrate25/Material-sheet/master/data.json')
+  fetch('https://raw.githubusercontent.com/decerebrate25/Material-sheet/main/data.json)
     .then(response => response.json())
     .then(data => {
       let recordedMaterials = data.recordedItems || [];
