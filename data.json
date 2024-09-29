@@ -1,0 +1,25 @@
+{
+  "recordedItems": [
+    {
+      "workOrderNumber": "WO-123",
+      "itemNumber": "Item-1",
+      "quantity": 10,
+      "description": "Item description",
+      "date": "2023-02-20"
+    },
+    {
+      "workOrderNumber": "WO-456",
+      "itemNumber": "Item-2",
+      "quantity": 20,
+      "description": "Item description",
+      "date": "2023-02-21"
+    },
+    {
+      "workOrderNumber": "WO-789",
+      "itemNumber": "Item-3",
+      "quantity": 30,
+      "description": "Item description",
+      "date": "2023-02-22"
+    }
+  ]
+}
