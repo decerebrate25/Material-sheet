@@ -44,70 +44,78 @@ itemList.addEventListener('click', (event) => {
 });
 
 // Add event listener to the record materials button
+// Add event listener to the record materials button
 recordMaterialsBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    const workOrderNumber = workOrderNumberInput.value;
-    const items = itemList.children;
-  
-    // Get the recorded materials from local storage
-    let recordedMaterials = JSON.parse(localStorage.getItem('recordedMaterials')) || [];
-  
-    // Iterate over the items and add them to the recordedMaterials array
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      const itemNumberInput = item.querySelector(`#item-number-${i}`);
-      const quantityInput = item.querySelector(`#item-quantity-${i}`);
-      const descriptionInput = item.querySelector(`#item-description-${i}`);
-      const itemNumber = itemNumberInput.value;
-      const quantity = quantityInput.value;
-      const description = descriptionInput.value;
-  
-      // Check if the item already exists in the recordedMaterials array
-      const existingItemIndex = recordedMaterials.findIndex(material => material.workOrderNumber === workOrderNumber && material.itemNumber === itemNumber);
-  
-      if (existingItemIndex === -1) {
-        // Add the new item to the recordedMaterials array
-        recordedMaterials.push({
-          workOrderNumber: workOrderNumber,
-          itemNumber: itemNumber,
-          quantity: quantity,
-          description: description,
-          date: new Date().toLocaleDateString()
-        });
-      }
-    }
-  
-    // Save the recorded materials to local storage
-    localStorage.setItem('recordedMaterials', JSON.stringify(recordedMaterials));
-  
-    // Clear the input fields and reset the list of items
-    workOrderNumberInput.value = '';
-    itemList.innerHTML = '';
-    currentItemIndex = 0;
-  
-    displayRecordedMaterials();
-  });
+  event.preventDefault();
+  const workOrderNumber = workOrderNumberInput.value;
+  const items = itemList.children;
 
-function displayRecordedMaterials() {
-  fetch('https://raw.githubusercontent.com/decerebrate25/Mareial-sheet/master/data.json')
+  // Get the recorded materials from the data.json file
+  fetch('https://raw.githubusercontent.com/your-username/your-repo-name/master/data.json')
     .then(response => response.json())
     .then(data => {
-      const recordedItems = data.recordedItems;
-      const itemList = document.getElementById('item-list');
-      recordedItems.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.innerHTML = `
-          <h2>${item.workOrderNumber}</h2>
-          <p>Item Number: ${item.itemNumber}</p>
-          <p>Quantity: ${item.quantity}</p>
-          <p>Description: ${item.description}</p>
-          <p>Date: ${item.date}</p>
-        `;
-        itemList.appendChild(itemElement);
-      });
-    });
-}
+      let recordedMaterials = data.recordedItems || [];
 
+      // Iterate over the items and add them to the recordedMaterials array
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const itemNumberInput = item.querySelector(`#item-number-${i}`);
+        const quantityInput = item.querySelector(`#item-quantity-${i}`);
+        const descriptionInput = item.querySelector(`#item-description-${i}`);
+        const itemNumber = itemNumberInput.value;
+        const quantity = quantityInput.value;
+        const description = descriptionInput.value;
+
+        // Check if the item already exists in the recordedMaterials array
+        const existingItemIndex = recordedMaterials.findIndex(material => material.workOrderNumber === workOrderNumber && material.itemNumber === itemNumber);
+
+        if (existingItemIndex === -1) {
+          // Add the new item to the recordedMaterials array
+          recordedMaterials.push({
+            workOrderNumber: workOrderNumber,
+            itemNumber: itemNumber,
+            quantity: quantity,
+            description: description,
+            date: new Date().toLocaleDateString()
+          });
+        }
+      }
+
+      // Save the recorded materials to the data.json file
+      const jsonData = JSON.stringify({ recordedItems: recordedMaterials });
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      // Create a new GitHub issue to store the data
+      const issueTitle = `Recorded Materials - ${new Date().toLocaleDateString()}`;
+      const issueBody = `Recorded materials for work order ${workOrderNumber}: ${JSON.stringify(recordedMaterials)}`;
+      const issueLabels = ['recorded-materials'];
+
+      // Use the GitHub API to create a new issue
+      fetch(`https://api.github.com/repos/your-username/your-repo-name/issues`, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer your-github-token',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: issueTitle,
+          body: issueBody,
+          labels: issueLabels
+        })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data));
+
+      // Clear the input fields and reset the list of items
+      workOrderNumberInput.value = '';
+      itemList.innerHTML = '';
+      currentItemIndex = 0;
+
+      // Display the recorded materials
+      displayRecordedMaterials();
+    });
+});
  // Add event listener to the main container
  mainContainer.addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-btn')) {
